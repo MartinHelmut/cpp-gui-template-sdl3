@@ -23,6 +23,8 @@ There are other versions of this template:
 - [SDL2 Renderer](https://github.com/MartinHelmut/cpp-gui-template-sdl2)
 - [SDL2 & OpenGL](https://github.com/MartinHelmut/cpp-gui-template-sdl2-opengl)
 
+**Remark:** The SDL2/3 renderer versions do not support multi-viewport and detached widgets, but the OpenGL versions do.
+
 ## Disclaimer
 
 Special acknowledgment to the amazing open source font [Manrope](https://manropefont.com).
