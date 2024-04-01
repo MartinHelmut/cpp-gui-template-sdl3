@@ -1,0 +1,20 @@
+<svg width="512" height="512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="c">
+      <stop stop-color="#A1FFE3" offset="0%"/>
+      <stop stop-color="#2F44FF" offset="100%"/>
+    </linearGradient>
+    <filter x="-4.9%" y="-2.4%" width="109.7%" height="109.7%" filterUnits="objectBoundingBox" id="a">
+      <feOffset dy="10" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0" in="shadowBlurOuter1"/>
+    </filter>
+    <path
+      d="M167.939 50H344.06c41.01 0 55.881 4.27 70.874 12.288 14.992 8.018 26.759 19.785 34.777 34.777C457.73 112.058 462 126.93 462 167.94V344.06c0 41.01-4.27 55.881-12.288 70.874-8.018 14.992-19.785 26.759-34.777 34.777C399.942 457.73 385.07 462 344.06 462H167.94c-41.01 0-55.881-4.27-70.874-12.288-14.992-8.018-26.759-19.785-34.777-34.777C54.27 399.942 50 385.07 50 344.06V167.94c0-41.01 4.27-55.881 12.288-70.874 8.018-14.992 19.785-26.759 34.777-34.777C112.058 54.27 126.93 50 167.94 50Z"
+      id="b"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+    <use fill="url(#c)" xlink:href="#b"/>
+  </g>
+</svg>
