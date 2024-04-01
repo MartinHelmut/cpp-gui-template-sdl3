@@ -11,7 +11,7 @@ namespace App {
 
 class Resources {
  public:
-  static std::filesystem::path get_user_config_path() {
+  [[nodiscard]] static std::filesystem::path get_user_config_path() {
     return SDL_GetPrefPath(COMPANY_NAMESPACE.c_str(), APP_NAME.c_str());
   }
 
