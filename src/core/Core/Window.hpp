@@ -2,6 +2,7 @@
 
 #include <SDL3/SDL.h>
 
+#include <filesystem>
 #include <string>
 
 #include "Core/Resources.hpp"
@@ -39,7 +40,7 @@ class Window {
 
   bool m_minimized{false};
 
-  const std::string m_user_config_path{Resources::get_user_config_path()};
+  const std::filesystem::path m_user_config_path{Resources::get_user_config_path()};
 
   bool m_show_some_panel{true};
   bool m_show_debug_panel{false};

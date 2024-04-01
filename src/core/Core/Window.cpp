@@ -41,7 +41,7 @@ Window::Window(const Settings& settings)
                     ImGuiConfigFlags_ViewportsEnable;
 
   // Absolute imgui.ini path to preserve settings independent of app location.
-  static const std::string imgui_ini_filename{m_user_config_path + "imgui.ini"};
+  static const std::string imgui_ini_filename{m_user_config_path.generic_string() + "imgui.ini"};
   io.IniFilename = imgui_ini_filename.c_str();
 
   // ImGUI font
