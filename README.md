@@ -17,10 +17,11 @@ After using this template to create your own repository, it is time to first run
 
 ## Other versions
 
-There are other versions of this template using SDL2:
+There are other versions of this template:
 
-- [SDL Renderer](https://github.com/MartinHelmut/cpp-gui-template-sdl2)
-- [OpenGL](https://github.com/MartinHelmut/cpp-gui-template-sdl2-opengl)
+- [SDL3 & OpenGL](https://github.com/MartinHelmut/cpp-gui-template-sdl3-opengl)
+- [SDL2 Renderer](https://github.com/MartinHelmut/cpp-gui-template-sdl2)
+- [SDL2 & OpenGL](https://github.com/MartinHelmut/cpp-gui-template-sdl2-opengl)
 
 ## Disclaimer
 
