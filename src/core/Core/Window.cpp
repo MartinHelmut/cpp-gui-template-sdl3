@@ -88,7 +88,7 @@ void Window::update() {
       if (ImGui::BeginMenu("View")) {
         ImGui::MenuItem("Some Panel", nullptr, &m_show_some_panel);
         ImGui::MenuItem("ImGui Demo Panel", nullptr, &m_show_demo_panel);
-        ImGui::MenuItem("Debug Panel", nullptr, &m_show_debug_panel);
+        ImGui::MenuItem("Debug Panels", nullptr, &m_show_debug_panel);
         ImGui::EndMenu();
       }
 
@@ -111,7 +111,10 @@ void Window::update() {
     if (m_show_debug_panel) {
       const ImGuiIO& io{ImGui::GetIO()};
 
-      ImGui::Begin("Debug panel", &m_show_debug_panel);
+      ImGui::ShowMetricsWindow();
+      ImGui::ShowDebugLogWindow();
+
+      ImGui::Begin("App debug panel", &m_show_debug_panel);
       ImGui::Text("Current SDL_Renderer: %s", SDL_GetRendererName(m_renderer));
       ImGui::Text("User config path: %s", m_user_config_path.c_str());
       ImGui::Text("Global font scaling %f", io.FontGlobalScale);
