@@ -20,8 +20,7 @@ Window::Window(const Settings& settings)
           m_settings.width,
           m_settings.height,
           SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY)),
-      m_renderer(SDL_CreateRenderer(
-          m_window, nullptr, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED)) {
+      m_renderer(SDL_CreateRenderer(m_window, nullptr)) {
   APP_PROFILE_FUNCTION();
 
   if (m_renderer == nullptr) {
@@ -110,12 +109,10 @@ void Window::update() {
 
     // Debug panel
     if (m_show_debug_panel) {
-      SDL_RendererInfo info;
-      SDL_GetRendererInfo(m_renderer, &info);
       const ImGuiIO& io{ImGui::GetIO()};
 
       ImGui::Begin("Debug panel", &m_show_debug_panel);
-      ImGui::Text("Current SDL_Renderer: %s", info.name);
+      ImGui::Text("Current SDL_Renderer: %s", SDL_GetRendererName(m_renderer));
       ImGui::Text("User config path: %s", m_user_config_path.c_str());
       ImGui::Text("Global font scaling %f", io.FontGlobalScale);
       ImGui::End();
@@ -127,7 +124,7 @@ void Window::update() {
 
   SDL_SetRenderDrawColor(m_renderer, 100, 100, 100, 255);
   SDL_RenderClear(m_renderer);
-  ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData());
+  ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), m_renderer);
   SDL_RenderPresent(m_renderer);
 }
 

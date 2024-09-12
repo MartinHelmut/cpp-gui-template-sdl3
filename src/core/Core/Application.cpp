@@ -16,8 +16,8 @@ Application::Application(const std::string& title) {
   APP_PROFILE_FUNCTION();
 
   const unsigned int init_flags{SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMEPAD};
-  if (SDL_Init(init_flags) != 0) {
-    APP_ERROR("Error: %s\n", SDL_GetError());
+  if (!SDL_Init(init_flags)) {
+    APP_ERROR("Error on SDL_Init(): %s\n", SDL_GetError());
     m_exit_status = ExitStatus::FAILURE;
   }
 
