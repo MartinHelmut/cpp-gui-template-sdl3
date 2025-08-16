@@ -47,8 +47,14 @@ Window::Window(const Settings& settings)
   const std::string font_path{Resources::font_path("Manrope.ttf").generic_string()};
   const float font_scaling_factor{SDL_GetWindowDisplayScale(m_window)};
   const float font_size{18.0F * font_scaling_factor};
-  io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
-  io.FontDefault = io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+
+  if (Resources::exists(font_path)) {
+    io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+  } else {
+    APP_WARN("Could not find font file under: {}", font_path.c_str());
+  }
+
   io.FontGlobalScale = 1.0F / font_scaling_factor;
 
   // Setup Platform/Renderer backends

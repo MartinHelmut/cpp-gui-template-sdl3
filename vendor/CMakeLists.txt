@@ -5,31 +5,31 @@ include(FetchContent)
 FetchContent_Declare(
   doctest
   GIT_REPOSITORY "https://github.com/onqtam/doctest.git"
-  GIT_TAG v2.4.11
+  GIT_TAG v2.4.12
 )
 
 FetchContent_Declare(
   fmt
   GIT_REPOSITORY "https://github.com/fmtlib/fmt.git"
-  GIT_TAG 11.0.2
+  GIT_TAG 11.2.0
 )
 
 FetchContent_Declare(
   imgui
   GIT_REPOSITORY "https://github.com/ocornut/imgui.git"
-  GIT_TAG 68aa9a86ec933510073932980a0940742ecc833c # Branch: docking, date: 10.09.2024, 04:29 GMT+2
+  GIT_TAG b4311141947de17763d88f680c84c14379538388 # Branch: docking, date: 08.08.2024, 06:37 GMT+3
 )
 
 FetchContent_Declare(
   SDL3
   GIT_REPOSITORY "https://github.com/libsdl-org/SDL.git"
-  GIT_TAG 6e2f2428baca59280cb9bab47f7dac1159f94c46 # Branch: main, date: 12.09.2024, 08:31 GMT+2
+  GIT_TAG release-3.2.20
 )
 
 FetchContent_Declare(
   spdlog
   GIT_REPOSITORY "https://github.com/gabime/spdlog.git"
-  GIT_TAG v1.14.1
+  GIT_TAG v1.15.3
 )
 
 # Settings
