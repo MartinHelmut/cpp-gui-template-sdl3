@@ -20,8 +20,7 @@ Window::Window(const Settings& settings)
           m_settings.width,
           m_settings.height,
           SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIGH_PIXEL_DENSITY)),
-      m_renderer(SDL_CreateRenderer(
-          m_window, nullptr, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED)) {
+      m_renderer(SDL_CreateRenderer(m_window, nullptr)) {
   APP_PROFILE_FUNCTION();
 
   if (m_renderer == nullptr) {
@@ -48,8 +47,14 @@ Window::Window(const Settings& settings)
   const std::string font_path{Resources::font_path("Manrope.ttf").generic_string()};
   const float font_scaling_factor{SDL_GetWindowDisplayScale(m_window)};
   const float font_size{18.0F * font_scaling_factor};
-  io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
-  io.FontDefault = io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+
+  if (Resources::exists(font_path)) {
+    io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+    io.FontDefault = io.Fonts->AddFontFromFileTTF(font_path.c_str(), font_size);
+  } else {
+    APP_WARN("Could not find font file under: {}", font_path.c_str());
+  }
+
   io.FontGlobalScale = 1.0F / font_scaling_factor;
 
   // Setup Platform/Renderer backends
@@ -89,7 +94,7 @@ void Window::update() {
       if (ImGui::BeginMenu("View")) {
         ImGui::MenuItem("Some Panel", nullptr, &m_show_some_panel);
         ImGui::MenuItem("ImGui Demo Panel", nullptr, &m_show_demo_panel);
-        ImGui::MenuItem("Debug Panel", nullptr, &m_show_debug_panel);
+        ImGui::MenuItem("Debug Panels", nullptr, &m_show_debug_panel);
         ImGui::EndMenu();
       }
 
@@ -110,12 +115,13 @@ void Window::update() {
 
     // Debug panel
     if (m_show_debug_panel) {
-      SDL_RendererInfo info;
-      SDL_GetRendererInfo(m_renderer, &info);
       const ImGuiIO& io{ImGui::GetIO()};
 
-      ImGui::Begin("Debug panel", &m_show_debug_panel);
-      ImGui::Text("Current SDL_Renderer: %s", info.name);
+      ImGui::ShowMetricsWindow();
+      ImGui::ShowDebugLogWindow();
+
+      ImGui::Begin("App debug panel", &m_show_debug_panel);
+      ImGui::Text("Current SDL_Renderer: %s", SDL_GetRendererName(m_renderer));
       ImGui::Text("User config path: %s", m_user_config_path.c_str());
       ImGui::Text("Global font scaling %f", io.FontGlobalScale);
       ImGui::End();
@@ -127,7 +133,7 @@ void Window::update() {
 
   SDL_SetRenderDrawColor(m_renderer, 100, 100, 100, 255);
   SDL_RenderClear(m_renderer);
-  ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData());
+  ImGui_ImplSDLRenderer3_RenderDrawData(ImGui::GetDrawData(), m_renderer);
   SDL_RenderPresent(m_renderer);
 }
 

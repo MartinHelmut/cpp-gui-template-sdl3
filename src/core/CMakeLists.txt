@@ -7,7 +7,7 @@ add_library(${NAME} STATIC
   Core/Application.cpp Core/Application.hpp
   Core/Window.cpp Core/Window.hpp
   Core/DPIHandler.cpp Core/DPIHandler.hpp
-  Core/Resources.hpp)
+  Core/Resources.hpp Core/Resources.cpp)
 
 # Define set of OS specific files to include
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
